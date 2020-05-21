@@ -35,6 +35,8 @@ import Foundation
         self.tableView.register(OutlineCell.self, forCellReuseIdentifier: OutlineCell.reuseIdentifier)
         self.navigationItem.rightBarButtonItem = self.addButton
         self.navigationItem.leftBarButtonItem = self.editButton
+        self.tableView.allowsSelection = false
+        self.tableView.allowsSelectionDuringEditing = true
 
         NotificationCenter.default.addObserver(self, selector: #selector(onSyncComplete), name: self.syncCompleteNotificationName, object: nil)
     }
@@ -224,6 +226,10 @@ import Foundation
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard self.notes.indices.contains(indexPath.row) else {
             fatalError("\(indexPath.row) is out of bounds")
+        }
+        if !self.isEditing {
+            // print( "This should do an OutlineView type view for this cell" )
+            return
         }
         let note = self.notes[indexPath.row]
         self.edit(note: note)

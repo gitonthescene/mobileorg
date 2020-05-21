@@ -33,6 +33,8 @@ final class OutlineCell: UITableViewCell {
 
         self.textLabel?.numberOfLines = 0
         self.textLabel?.adjustsFontForContentSizeCategory = true
+        //self.accessoryType = UITableViewCell.AccessoryType.disclosureIndicator
+        self.editingAccessoryType = UITableViewCell.AccessoryType.disclosureIndicator
     }
 
     required init?(coder: NSCoder) { fatalError("init(coder:) has not been implemented") }
